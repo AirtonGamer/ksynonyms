@@ -11,8 +11,13 @@ class Pad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = TextEditingController(
+
+    final controller = TextEditingController(
         text: Provider.of<Providertest>(context).textResult);
+
+    final inputController = TextEditingController(
+        text: Provider.of<Providertest>(context).inputData);
+
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15.5)),
@@ -24,7 +29,8 @@ class Pad extends StatelessWidget {
             width: MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width * 0.90
                 : MediaQuery.of(context).size.width * 0.45,
-            height: MediaQuery.of(context).size.height * 0.30,
+            height: MediaQuery.of(context).orientation == Orientation.portrait
+                ?  MediaQuery.of(context).size.height * 0.30 : MediaQuery.of(context).size.height * 0.45, 
             child: TextField(
               decoration: const InputDecoration(
                 filled: true,
@@ -49,19 +55,21 @@ class Pad extends StatelessWidget {
                 Provider.of<Providertest>(context, listen: false).setInstance();
                 Provider.of<Providertest>(context, listen: false)
                     .saveInput(value);
-                Provider.of<Providertest>(context, listen: false)
-                    .translateFunc();
+                //Provider.of<Providertest>(context, listen: false)
+                //    .translateFunc();
               },
               expands: true,
               maxLines: null,
               readOnly: readOnly,
               controller: readOnly == false
                   ? null
-                  : (Provider.of<Providertest>(context, listen: false)
-                          .inputData
-                          .isEmpty
-                      ? null
-                      : _controller),
+                  // : (Provider.of<Providertest>(context, listen: false)
+                  //         .inputData
+                  //         .isEmpty
+                  //     ? null
+                  //     : 
+                      : controller
+                      //),
             ),
           ),
           SizedBox(

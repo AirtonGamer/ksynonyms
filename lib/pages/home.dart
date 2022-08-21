@@ -12,15 +12,16 @@ class KSynonymsHome extends StatelessWidget {
       backgroundColor: backgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           const Center(
             child: TopBar(),
           ),
           MediaQuery.of(context).orientation == Orientation.portrait
               ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const <Widget>[
                     Pad(readOnly: false),
+                    SizedBox(height: 10),
                     Pad(readOnly: true),
                   ],
                 )
@@ -28,6 +29,7 @@ class KSynonymsHome extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const <Widget>[
                     Pad(readOnly: false),
+                    SizedBox(width: 10),
                     Pad(readOnly: true),
                   ],
                 ),

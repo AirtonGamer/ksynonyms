@@ -51,7 +51,15 @@ class Providertest with ChangeNotifier {
     toLangVal = langSwitcher;
     toLangCode = langcodeSwitcher;
 
+    valueSwitcher = inputData;
+
+    inputData = textResult;
+
+    textResult = valueSwitcher;
     
+    setInstance();
+    saveInput(inputData);
+    translateFunc();
     notifyListeners();
   }
 
@@ -63,6 +71,7 @@ class Providertest with ChangeNotifier {
   void saveInput(String value) {
     gt.updateSimplyInstances();
     inputData = value;
+    translateFunc();
     //gt.setInstance = "translate.josias.dev";
     //print(gt.getInstances);
     notifyListeners();
