@@ -1,6 +1,6 @@
 # Ksynonyms
 
-Simple Translate App Written In Flutter And Dart.
+Secure LightWeight Cross-Platform Translation App Written In Flutter And Dart 
 
 ## Features
 
@@ -12,4 +12,5 @@ Simple Translate App Written In Flutter And Dart.
 
 ### Download
 
-Navigate To The Download Page. 
+You Can Find All Releases Right Here:
+https://github.com/AirtonGamer/ksynonyms/releases
