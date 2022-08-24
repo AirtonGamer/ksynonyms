@@ -1,9 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import "package:simplytranslate/simplytranslate.dart";
+import 'package:audioplayers/audioplayers.dart';
+//import "package:just_audio/just_audio.dart";
 
 class Providertest with ChangeNotifier {
   //Translate From specific language
-  String fromLangVal = "Auto";
+  String fromLangVal = "AutoDetect";
   String fromLangCode = "auto";
 
   //Translate To specific language
@@ -22,6 +24,10 @@ class Providertest with ChangeNotifier {
   String textResult = "";
 
   String searchValue = "";
+
+  final AudioPlayer player = AudioPlayer();
+
+  TextEditingController inputController = TextEditingController();
 
   void searchBar(String value) {
     searchValue = value;
@@ -55,8 +61,10 @@ class Providertest with ChangeNotifier {
 
     inputData = textResult;
 
+    inputController.text = textResult;
+
     textResult = valueSwitcher;
-    
+
     setInstance();
     saveInput(inputData);
     translateFunc();
@@ -72,14 +80,19 @@ class Providertest with ChangeNotifier {
     gt.updateSimplyInstances();
     inputData = value;
     translateFunc();
-    //gt.setInstance = "translate.josias.dev";
-    //print(gt.getInstances);
     notifyListeners();
   }
 
   void translateFunc() async {
     textResult = await gt.trSimply(inputData, fromLangCode, toLangCode);
     notifyListeners();
-    //gt.updateSimplyInstances();
+  }
+
+  void playAudio(bool inputDataSound) async {
+    if (inputDataSound == true) {
+      await player.play(UrlSource(gt.getTTSUrlSimply(inputData,fromLangCode)));
+    } else {
+      await player.play(UrlSource(gt.getTTSUrlSimply(textResult,toLangCode)));
+    }
   }
 }

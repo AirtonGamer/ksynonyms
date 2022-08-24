@@ -11,13 +11,13 @@ class TopBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.90,
       height: MediaQuery.of(context).size.height * 0.10,
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15.5)),
+        borderRadius: BorderRadius.all(Radius.circular(13.7)),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 84, 75, 217),
-            Color.fromARGB(255, 82, 76, 216),
+            Color.fromRGBO(71, 82, 217, 1),
+            Color.fromRGBO(94, 68, 217, 1),
           ],
         ),
       ),
@@ -41,29 +41,29 @@ class TopBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 7.5),
                 Image.asset(
-                  "assets/icons/arrow-down-sign-to-navigate.png",
-                  width: 10,
-                  height: 10,
+                  "assets/icons/down.png",
+                  width: 18,
+                  height: 18,
                   color: Colors.white,
                 ),
               ],
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => LangPage(translateFrom: true)));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const LangPage(translateFrom: true),
+                ),
+              );
+              Provider.of<Providertest>(context,listen: false).searchBar("");
             },
           ),
           IconButton(
-            icon: const Icon(
-              Icons.repeat_rounded,
+            icon: Image.asset(
+              "assets/icons/exchange.png",
               color: Colors.white,
+              width: 20,
+              height: 20,
             ),
-            // icon: Image.asset(
-            //   "assets/icons/exchange.png",
-            //   color: Colors.white,
-            //   width: 20,
-            //   height: 20,
-            // ),
             onPressed: () {
               Provider.of<Providertest>(context, listen: false).dataSwitcher();
             },
@@ -85,16 +85,20 @@ class TopBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 7.5),
                 Image.asset(
-                  "assets/icons/arrow-down-sign-to-navigate.png",
-                  width: 10,
-                  height: 10,
+                  "assets/icons/down.png",
+                  width: 18,
+                  height: 18,
                   color: Colors.white,
                 ),
               ],
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => LangPage(translateFrom: false)));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const LangPage(translateFrom: false),
+                ),
+              );
+              Provider.of<Providertest>(context,listen: false).searchBar("");
             },
           ),
         ],

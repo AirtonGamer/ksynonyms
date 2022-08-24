@@ -11,13 +11,6 @@ class Pad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final controller = TextEditingController(
-        text: Provider.of<Providertest>(context).textResult);
-
-    final inputController = TextEditingController(
-        text: Provider.of<Providertest>(context).inputData);
-
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(15.5)),
@@ -30,47 +23,46 @@ class Pad extends StatelessWidget {
                 ? MediaQuery.of(context).size.width * 0.90
                 : MediaQuery.of(context).size.width * 0.45,
             height: MediaQuery.of(context).orientation == Orientation.portrait
-                ?  MediaQuery.of(context).size.height * 0.30 : MediaQuery.of(context).size.height * 0.45, 
-            child: TextField(
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: textFieldColor,
-                hoverColor: textFieldColor,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.5)),
-                  borderSide: BorderSide(
-                    width: 0.0,
-                    style: BorderStyle.none,
+                ? MediaQuery.of(context).size.height * 0.30
+                : MediaQuery.of(context).size.height * 0.45,
+            child: Consumer<Providertest>(builder: (context, data, _) {
+              return TextField(
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: textFieldColor,
+                  hoverColor: textFieldColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15.5)),
+                    borderSide: BorderSide(
+                      width: 0.0,
+                      style: BorderStyle.none,
+                    ),
                   ),
                 ),
-              ),
-              style: const TextStyle(
-                fontFamily: "Aromatica",
-                fontSize: 23,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-              textAlignVertical: TextAlignVertical.top,
-              onChanged: (String value) {
-                Provider.of<Providertest>(context, listen: false).setInstance();
-                Provider.of<Providertest>(context, listen: false)
-                    .saveInput(value);
-                //Provider.of<Providertest>(context, listen: false)
-                //    .translateFunc();
-              },
-              expands: true,
-              maxLines: null,
-              readOnly: readOnly,
-              controller: readOnly == false
-                  ? null
-                  // : (Provider.of<Providertest>(context, listen: false)
-                  //         .inputData
-                  //         .isEmpty
-                  //     ? null
-                  //     : 
-                      : controller
-                      //),
-            ),
+                style: const TextStyle(
+                  fontFamily: "Aromatica",
+                  fontSize: 23,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+                textAlignVertical: TextAlignVertical.top,
+                onChanged: (String value) {
+                  Provider.of<Providertest>(context, listen: false)
+                      .setInstance();
+                  Provider.of<Providertest>(context, listen: false)
+                      .saveInput(value);
+                },
+                expands: true,
+                maxLines: null,
+                readOnly: readOnly,
+                controller: readOnly == false
+                    ? data.inputController
+                    : TextEditingController(
+                        text: data.textResult,
+                      ),
+                //),
+              );
+            }),
           ),
           SizedBox(
             width: MediaQuery.of(context).orientation == Orientation.portrait
@@ -87,7 +79,9 @@ class Pad extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(Icons.copy),
+                  icon: Image.asset("assets/icons/copy.png",
+                      width: 64, height: 64),
+                  iconSize: 32,
                   onPressed: () {
                     Clipboard.setData(
                       ClipboardData(
@@ -101,8 +95,15 @@ class Pad extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: const Icon(Icons.speaker),
-                  onPressed: () {},
+                  icon: Image.asset("assets/icons/audio.png"),
+                  iconSize: 30,
+                  onPressed: () {
+                    readOnly == false
+                        ? Provider.of<Providertest>(context, listen: false)
+                            .playAudio(true)
+                        : Provider.of<Providertest>(context, listen: false)
+                            .playAudio(false);
+                  },
                 ),
                 const SizedBox(
                   width: 15,
