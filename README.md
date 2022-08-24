@@ -1,6 +1,6 @@
 # Ksynonyms
 
-Secure LightWeight Cross-Platform Translation App Written In Flutter And Dart 
+Secure LightWeight Cross-Platform Translation App
 
 ## Features
 
