@@ -1,16 +1,15 @@
-# ksynonyms
+# Ksynonyms
 
-A new Flutter project.
+Simple Translate App Written In Flutter And Dart.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Private And Secure🔒
+- Fast And Optimized
+- Cross-Platform
+- Supports More Than 100 Languages
+- LightWeight And Open-Source
 
-A few resources to get you started if this is your first Flutter project:
+### Download
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Navigate To The Download Page. 
