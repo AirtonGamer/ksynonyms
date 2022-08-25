@@ -2,7 +2,7 @@
 
 Secure LightWeight Cross-Platform Translation App
 
-## Getting Started
+## About App
 
 ### Features
 
